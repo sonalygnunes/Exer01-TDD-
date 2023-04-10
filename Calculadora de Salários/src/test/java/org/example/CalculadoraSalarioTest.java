@@ -4,6 +4,35 @@ import static org.junit.Assert.assertEquals;
 
 public class CalculadoraSalarioTest {
 
+
+
+    @Test
+    public void testGetNome(){
+        Funcionario funcionario = new Funcionario("Carlos", "carlos@email.com", "Desenvolvedor", 1500.00);
+        String nome = funcionario.getNome();
+        assertEquals(nome,"Carlos");
+    }
+
+    @Test
+    public void testGetEmail(){
+        Funcionario funcionario = new Funcionario("Carlos", "carlos@email.com", "Desenvolvedor", 1500.00);
+        String email = funcionario.getEmail();
+        assertEquals(email,"carlos@email.com");
+    }
+
+    @Test
+    public void testGetCargo(){
+        Funcionario funcionario = new Funcionario("Carlos", "carlos@email.com", "Desenvolvedor", 1500.00);
+        String cargo = funcionario.getCargo();
+        assertEquals(cargo,"Desenvolvedor");
+    }
+
+    @Test
+    public void testGetSalarioBase(){
+        Funcionario funcionario = new Funcionario("Carlos", "carlos@email.com", "Desenvolvedor", 1500.00);
+        String salarioBase = funcionario.getSalarioBase();
+        assertEquals(salarioBase,1500.00);
+    }
     @Test
     public void testCalculaSalarioDesenvolvedorComSalarioMaiorQue3000() {
         Funcionario desenvolvedor = new Funcionario("João", "joao@email.com", "Desenvolvedor", 4000.00);
