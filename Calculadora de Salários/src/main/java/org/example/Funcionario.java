@@ -17,18 +17,18 @@ public class Funcionario {
 
 
     public String getNome() {
-        return null;
+        return this.nome;
     }
 
     public String getEmail() {
-        return null;
+        return this.email;
     }
 
     public String getCargo() {
-        return null;
+        return this.cargo;
     }
 
-    public String getSalarioBase() {
-        return null;
+    public Double getSalarioBase() {
+        return this.salarioBase;
     }
 }

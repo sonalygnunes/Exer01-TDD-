@@ -1,5 +1,8 @@
 package org.example;
 import org.junit.Test;
+
+import java.util.Optional;
+
 import static org.junit.Assert.assertEquals;
 
 public class CalculadoraSalarioTest {
@@ -30,8 +33,8 @@ public class CalculadoraSalarioTest {
     @Test
     public void testGetSalarioBase(){
         Funcionario funcionario = new Funcionario("Carlos", "carlos@email.com", "Desenvolvedor", 1500.00);
-        String salarioBase = funcionario.getSalarioBase();
-        assertEquals(salarioBase,1500.00);
+        Double salarioBase = funcionario.getSalarioBase();
+        assertEquals(salarioBase,1500.00,0.001);
     }
     @Test
     public void testCalculaSalarioDesenvolvedorComSalarioMaiorQue3000() {
