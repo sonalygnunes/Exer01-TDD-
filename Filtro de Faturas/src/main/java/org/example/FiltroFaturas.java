@@ -25,7 +25,9 @@ public class FiltroFaturas {
             if (fatura.getValor() >= 2500 && fatura.getValor() <= 3000 && fatura.getCliente().getDataInclusao().before(getDataDoisMesesAtras())) {
                 continue;
             }
-
+            if (fatura.getValor() > 4000 && isClienteDaRegiaoSul(fatura.getCliente())) {
+                continue;
+            }
             faturasFiltradas.add(fatura);
         }
         return faturasFiltradas;
@@ -41,6 +43,10 @@ public class FiltroFaturas {
         long doisMesesEmMilissegundos = 2L * 30L * 24L * 60L * 60L * 1000L;
         long tempoAtras = agora.getTime() - doisMesesEmMilissegundos;
         return new Date(tempoAtras);
+    }
+    private boolean isClienteDaRegiaoSul(Cliente cliente) {
+        String estado = cliente.getEstado();
+        return estado.equals("PR") || estado.equals("SC") || estado.equals("RS");
     }
 
 }
