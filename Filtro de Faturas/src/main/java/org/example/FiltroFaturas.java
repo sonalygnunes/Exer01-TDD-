@@ -15,9 +15,28 @@ public class FiltroFaturas {
             if (fatura.getValor() < 2000) {
                 continue;
             }
+            if (fatura.getValor() >= 2000 && fatura.getValor() <= 2500 && fatura.getData().before(getDataUmMesAtras())) {
+                continue;
+            }
+            if (fatura.getValor() >= 2500 && fatura.getValor() <= 3000 && fatura.getCliente().getDataInclusao().before(getDataDoisMesesAtras())) {
+                continue;
+            }
+
             faturasFiltradas.add(fatura);
         }
         return faturasFiltradas;
+    }
+    private Date getDataUmMesAtras() {
+        Date agora = new Date();
+        long umMesEmMilissegundos = 30L * 24L * 60L * 60L * 1000L;
+        long tempoAtras = agora.getTime() - umMesEmMilissegundos;
+        return new Date(tempoAtras);
+    }
+    private Date getDataDoisMesesAtras() {
+        Date agora = new Date();
+        long doisMesesEmMilissegundos = 2L * 30L * 24L * 60L * 60L * 1000L;
+        long tempoAtras = agora.getTime() - doisMesesEmMilissegundos;
+        return new Date(tempoAtras);
     }
 
 }
