@@ -12,10 +12,14 @@ public class FiltroFaturas {
         List<Fatura> faturasFiltradas = new ArrayList<>();
 
         for (Fatura fatura : faturas) {
+
             if (fatura.getValor() < 2000) {
                 continue;
             }
             if (fatura.getValor() >= 2000 && fatura.getValor() <= 2500 && fatura.getData().before(getDataUmMesAtras())) {
+                continue;
+            }
+            if (fatura.getValor() >= 2500 && fatura.getValor() <= 3000 && fatura.getCliente().getDataInclusao().before(getDataDoisMesesAtras())) {
                 continue;
             }
             if (fatura.getValor() >= 2500 && fatura.getValor() <= 3000 && fatura.getCliente().getDataInclusao().before(getDataDoisMesesAtras())) {

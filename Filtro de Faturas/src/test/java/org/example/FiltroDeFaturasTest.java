@@ -60,26 +60,30 @@ public class FiltroDeFaturasTest {
         calendar.add(Calendar.MONTH, -2);
         Date data2MesesAtras = calendar.getTime();
 
-        Cliente cliente1 = new Cliente("Arisu", new Date(), "SP");
-        Cliente cliente2 = new Cliente("Marilene", new Date(), "SC");
+        Cliente cliente1 = new Cliente("Arisu", data1MesAtras, "SP");
+        Cliente cliente2 = new Cliente("Marilene", data2MesesAtras, "SC");
+        Cliente cliente3 = new Cliente("Merlin", new Date(), "SC");
+
 
         Fatura fatura1 = new Fatura("001", 2000, data1MesAtras, cliente1);
         Fatura fatura2 = new Fatura("002", 2300, new Date(), cliente1);
         Fatura fatura3 = new Fatura("003", 2600, new Date(), cliente2);
-        Fatura fatura4 = new Fatura("004", 3000, data2MesesAtras, cliente2);
+        Fatura fatura4 = new Fatura("004", 3000, new Date(), cliente3);
 
         List<Fatura> faturas = new ArrayList<>();
         faturas.add(fatura1);
         faturas.add(fatura2);
         faturas.add(fatura3);
         faturas.add(fatura4);
+
         FiltroFaturas filtro = new FiltroFaturas();
         List<Fatura> faturasFiltradas = filtro.filtrar(faturas);
-        assertEquals(3, faturasFiltradas.size());
+
+        assertEquals(2, faturasFiltradas.size());
         assertFalse(faturasFiltradas.contains(fatura1));
         assertTrue(faturasFiltradas.contains(fatura2));
         assertFalse(faturasFiltradas.contains(fatura3));
-        assertFalse(faturasFiltradas.contains(fatura4));
+        assertTrue(faturasFiltradas.contains(fatura4));
 
     }
     @Test
