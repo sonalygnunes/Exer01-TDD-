@@ -6,23 +6,23 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-public class FiltroFaturasTest {
+public class FiltroDeFaturasTest {
 
     @Test
     public void testFiltroValorMenorQue2000() {
         Fatura fatura1 = new Fatura("001", 1500, new Date(), new Cliente("Ana", new Date(), "SP"));
-        Fatura fatura2 = new Fatura("002", 3000, new Date(), new Cliente("Arisu", new Date(), "RJ"));
-        Fatura fatura3 = new Fatura("003", 5000, new Date(), new Cliente("Mario", new Date(), "SC"));
+        Fatura fatura2 = new Fatura("002", 1999, new Date(), new Cliente("Arisu", new Date(), "RJ"));
+        Fatura fatura3 = new Fatura("003", 2001, new Date(), new Cliente("Mario", new Date(), "SC"));
         List<Fatura> faturas = new ArrayList<>();
         faturas.add(fatura1);
         faturas.add(fatura2);
         faturas.add(fatura3);
         FiltroFaturas filtro = new FiltroFaturas();
         List<Fatura> faturasFiltradas = filtro.filtrar(faturas);
-        assertEquals(2, faturasFiltradas.size());
+        assertEquals(1, faturasFiltradas.size());
         assertFalse(faturasFiltradas.contains(fatura1));
-        assertTrue(faturasFiltradas.contains(fatura2));
-        assertFalse(faturasFiltradas.contains(fatura3));
+        assertFalse(faturasFiltradas.contains(fatura2));
+        assertTrue(faturasFiltradas.contains(fatura3));
     }
 
     @Test
