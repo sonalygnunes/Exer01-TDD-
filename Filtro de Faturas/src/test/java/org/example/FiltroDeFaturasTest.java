@@ -33,8 +33,8 @@ public class FiltroDeFaturasTest {
         data.add(Calendar.MONTH, -2);
         Date data2MesesAtras = data.getTime();
 
-        Fatura fatura1 = new Fatura("001", 2000, data.getTime(), new Cliente("Ana", new Date(), "SP"));
-        Fatura fatura2 = new Fatura("002", 2400, data.getTime(), new Cliente("Arisu", new Date(), "RJ"));
+        Fatura fatura1 = new Fatura("001", 2000, data2MesesAtras, new Cliente("Ana", new Date(), "SP"));
+        Fatura fatura2 = new Fatura("002", 2400, data1MesesAtras, new Cliente("Arisu", new Date(), "RJ"));
         Fatura fatura3 = new Fatura("003", 2500, new Date(), new Cliente("Mario", new Date(), "SC"));
 
         List<Fatura> faturas = new ArrayList<>();
