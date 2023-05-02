@@ -65,7 +65,7 @@ public class FiltroDeFaturasTest {
         Cliente cliente3 = new Cliente("Merlin", new Date(), "SC");
 
 
-        Fatura fatura1 = new Fatura("001", 2000, data1MesAtras, cliente1);
+        Fatura fatura1 = new Fatura("001", 1999, data1MesAtras, cliente1);
         Fatura fatura2 = new Fatura("002", 2300, new Date(), cliente1);
         Fatura fatura3 = new Fatura("003", 2600, new Date(), cliente2);
         Fatura fatura4 = new Fatura("004", 3000, new Date(), cliente3);
