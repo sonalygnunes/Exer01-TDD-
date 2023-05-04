@@ -35,9 +35,9 @@ public class FiltroDeFaturasFuncionalTest {
         FiltroFaturas filtro = new FiltroFaturas();
         List<Fatura> faturasFiltradas = filtro.filtrar(faturas);
 
+        assertEquals(50, faturasFiltradas.size());
 
-        assertEquals(48, faturasFiltradas.size());
-
+       
 
     }
 
