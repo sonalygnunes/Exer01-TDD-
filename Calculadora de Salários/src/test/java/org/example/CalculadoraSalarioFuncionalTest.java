@@ -1,10 +1,9 @@
 package org.example;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+
+import static org.junit.Assert.*;
 
 public class CalculadoraSalarioFuncionalTest {
     @Test
@@ -53,6 +52,125 @@ public class CalculadoraSalarioFuncionalTest {
 
 
     }
+    @Test
+    public void testCalculaSalarioLiquidoDesenvolvedorSalarioBaseAbaixoDe3000() {
+        Funcionario funcionario = new Funcionario("João", "joao@teste.com", "Desenvolvedor", 2500.0);
+        CalculadoraSalario calculadora = new CalculadoraSalario();
+        double salarioLiquido = calculadora.calculaSalarioLiquido(funcionario);
+        assertEquals(2250.0, salarioLiquido, 0.00001);
+    }
+
+    @Test
+    public void testCalculaSalarioLiquidoDesenvolvedorSalarioBaseAcimaDe3000() {
+        Funcionario funcionario = new Funcionario("João", "joao@teste.com", "Desenvolvedor", 3500.0);
+        CalculadoraSalario calculadora = new CalculadoraSalario();
+        double salarioLiquido = calculadora.calculaSalarioLiquido(funcionario);
+        assertEquals(2800.0, salarioLiquido, 0.00001);
+    }
+
+    @Test
+    public void testCalculaSalarioLiquidoDBASalarioBaseAbaixoDe2000() {
+        Funcionario funcionario = new Funcionario("João", "joao@teste.com", "DBA", 1500.0);
+        CalculadoraSalario calculadora = new CalculadoraSalario();
+        double salarioLiquido = calculadora.calculaSalarioLiquido(funcionario);
+        assertEquals(1275.0, salarioLiquido, 0.00001);
+    }
+
+    @Test
+    public void testCalculaSalarioLiquidoDBASalarioBaseAcimaDe2000() {
+        Funcionario funcionario = new Funcionario("João", "joao@teste.com", "DBA", 2500.0);
+        CalculadoraSalario calculadora = new CalculadoraSalario();
+        double salarioLiquido = calculadora.calculaSalarioLiquido(funcionario);
+        assertEquals(1875.0, salarioLiquido, 0.00001);
+    }
+
+    @Test
+    public void testCalculaSalarioLiquidoTestadorSalarioBaseAbaixoDe2000() {
+        Funcionario funcionario = new Funcionario("João", "joao@teste.com", "Testador", 1500.0);
+        CalculadoraSalario calculadora = new CalculadoraSalario();
+        double salarioLiquido = calculadora.calculaSalarioLiquido(funcionario);
+        assertEquals(1275.0, salarioLiquido, 0.00001);
+    }
+
+    @Test
+    public void testCalculaSalarioLiquidoTestadorSalarioBaseAcimaDe2000() {
+        Funcionario funcionario = new Funcionario("João", "joao@teste.com", "Testador", 2500.0);
+        CalculadoraSalario calculadora = new CalculadoraSalario();
+        double salarioLiquido = calculadora.calculaSalarioLiquido(funcionario);
+        assertEquals(1875.0, salarioLiquido, 0.00001);
+    }
+    @Test
+    public void testCalculaSalarioLiquidoGerenteSalarioBaseAbaixoDe5000() {
+        Funcionario funcionario = new Funcionario("João", "joao@teste.com", "Gerente", 4000.0);
+        CalculadoraSalario calculadora = new CalculadoraSalario();
+        double salarioLiquido = calculadora.calculaSalarioLiquido(funcionario);
+        assertEquals(3200.0, salarioLiquido, 0.00001);
+    }
+    @Test
+    public void testCalculaSalarioLiquidoGerenteSalarioBaseAcimaDe5000() {
+        Funcionario funcionario = new Funcionario("João", "joao@teste.com", "Gerente", 6000.0);
+        CalculadoraSalario calculadora = new CalculadoraSalario();
+        double salarioLiquido = calculadora.calculaSalarioLiquido(funcionario);
+        assertEquals(4200.0, salarioLiquido, 0.00001);
+    }
+
+    @Test
+    public void testCalculaSalarioLiquidoComCargoInvalido() {
+        Funcionario funcionario = new Funcionario("João", "joao@teste.com", "", 2500.0);
+        CalculadoraSalario calculadora = new CalculadoraSalario();
+        assertThrows(IllegalArgumentException.class, () -> {
+            calculadora.calculaSalarioLiquido(funcionario);
+        });
+    }
+    @Test
+    public void testesDaTabelaDecisão() {
+        Funcionario desenvolvedor = new Funcionario("João", "joao@gmail.com", "Desenvolvedor", 2500.0);
+        CalculadoraSalario calculadora = new CalculadoraSalario();
+        double salarioLiquido = calculadora.calculaSalarioLiquido(desenvolvedor);
+        assertEquals(2250.0, salarioLiquido, 0.001);
+
+         desenvolvedor = new Funcionario("Maria", "maria@gmail.com", "Desenvolvedor", 3500.0);
+         salarioLiquido = calculadora.calculaSalarioLiquido(desenvolvedor);
+        assertEquals(2800.0, salarioLiquido, 0.001);
+
+        Funcionario dba = new Funcionario("Pedro", "pedro@gmail.com", "DBA", 1500.0);
+         salarioLiquido = calculadora.calculaSalarioLiquido(dba);
+        assertEquals(1275.0, salarioLiquido, 0.001);
+
+         dba = new Funcionario("Ana", "ana@gmail.com", "DBA", 2500.0);
+         calculadora = new CalculadoraSalario();
+         salarioLiquido = calculadora.calculaSalarioLiquido(dba);
+        assertEquals(1875.0, salarioLiquido, 0.001);
+
+        Funcionario testador = new Funcionario("Carlos", "carlos@gmail.com", "Testador", 1500.0);
+         calculadora = new CalculadoraSalario();
+         salarioLiquido = calculadora.calculaSalarioLiquido(testador);
+        assertEquals(1275.0, salarioLiquido, 0.001);
+
+        Funcionario gerente = new Funcionario("João", "joao@teste.com", "Gerente", 5000.0);
+         calculadora = new CalculadoraSalario();
+         salarioLiquido = calculadora.calculaSalarioLiquido(gerente);
+        assertEquals(3500.0, salarioLiquido, 0.001);
+
+         gerente = new Funcionario("Maria", "maria@teste.com", "Gerente", 6000.0);
+         calculadora = new CalculadoraSalario();
+         salarioLiquido = calculadora.calculaSalarioLiquido(gerente);
+        assertEquals(4200.0, salarioLiquido, 0.001);
+    }
+    @Test(expected = IllegalArgumentException.class)
+    public void testeCalculaSalarioLiquidoCargoInvalido() {
+        Funcionario funcionario = new Funcionario("José", "jose@teste.com", "Programador", 2000.0);
+        CalculadoraSalario calculadora = new CalculadoraSalario();
+        calculadora.calculaSalarioLiquido(funcionario);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testeCalculaSalarioLiquidoEmailInvalido() {
+        Funcionario funcionario = new Funcionario("Maria", "maria", "Desenvolvedor", 3000.0);
+        CalculadoraSalario calculadora = new CalculadoraSalario();
+        calculadora.calculaSalarioLiquido(funcionario);
+    }
+
 
 
 }

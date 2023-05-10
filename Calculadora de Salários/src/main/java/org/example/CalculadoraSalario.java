@@ -38,4 +38,5 @@ public class CalculadoraSalario {
             throw new IllegalArgumentException("Email inválido: " + cargo);
         }
     }
+
 }
